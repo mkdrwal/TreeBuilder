@@ -1,13 +1,10 @@
 package dev.mateuszkowalczyk.treebuilder.controller;
 
-import dev.mateuszkowalczyk.treebuilder.exception.CannotCreateNodeException;
+import dev.mateuszkowalczyk.treebuilder.exception.NodeException;
 import dev.mateuszkowalczyk.treebuilder.model.TreeNodeSchema;
 import dev.mateuszkowalczyk.treebuilder.service.TreeNodeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/node")
@@ -24,7 +21,12 @@ public class TreeNodeController {
     }
 
     @PostMapping(value = {"", "/"})
-    public Long createNode(@RequestBody TreeNodeSchema treeNode) throws CannotCreateNodeException {
-        return this.treeNodeService.create(treeNode);
+    public Long createNode(@RequestBody TreeNodeSchema nodeSchema) throws NodeException {
+        return this.treeNodeService.create(nodeSchema);
+    }
+
+    @PutMapping(value = "/{nodeId}")
+    public void updateNode(@RequestBody TreeNodeSchema nodeSchema, @PathVariable(value = "nodeId") Long id) throws NodeException {
+        this.treeNodeService.update(id, nodeSchema);
     }
 }
