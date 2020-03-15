@@ -1,0 +1,16 @@
+<div class="node-container">
+    <input (click)="setValue($event)" (keyup)="setValue($event)" type="number">
+
+    <div (click)="createChild()" *ngIf="node.id" class="button add">
+        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+        </svg>
+    </div>
+    <!--    <div class="button remove">-->
+    <!--        <img src="./assets/remove-24px.svg" alt="">-->
+    <!--    </div>-->
+</div>
+<div class="children-container">
+    <app-tree-node *ngFor="let childrenNode of node.children" [node]="childrenNode" [parent]="node"></app-tree-node>
+</div>
