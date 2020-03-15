@@ -18,9 +18,9 @@ public class TreeService {
     }
 
     public Tree getTree() {
+        TreeBuilder treeBuilder = new TreeBuilder();
         Node parentNode = this.nodeService.getParentNode();
 
-        TreeBuilder treeBuilder = new TreeBuilder(parentNode);
-        return treeBuilder.buildTree();
+        return treeBuilder.buildTree(parentNode);
     }
 }
