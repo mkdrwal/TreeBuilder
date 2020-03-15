@@ -22,7 +22,7 @@ public class Node {
     private List<Node> children = new ArrayList<>();
 
     @Column
-    private Integer value;
+    private int value;
 
     public Long getId() {
         return id;
@@ -48,11 +48,11 @@ public class Node {
         this.children = children;
     }
 
-    public Integer getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(int value) {
         this.value = value;
     }
 }
