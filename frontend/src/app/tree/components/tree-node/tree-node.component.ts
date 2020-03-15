@@ -60,6 +60,21 @@ export class TreeNodeComponent implements OnInit, OnDestroy, AfterViewInit {
             );
     }
 
+    delete() {
+        this.httpClient.delete(this.envService.getApiUrl(`/node/${this.node.id}`)).subscribe(
+            value => {
+                this.parent.children.forEach(
+                    (node, index) => {
+                        if (this.node === node) {
+                            this.parent.children.splice(index, 1);
+                        }
+                    }
+                );
+                console.log("deleted");
+            }
+        );
+    }
+
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }

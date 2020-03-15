@@ -29,4 +29,9 @@ public class TreeNodeController {
     public void updateNode(@RequestBody TreeNodeSchema nodeSchema, @PathVariable(value = "nodeId") Long id) throws NodeException {
         this.treeNodeService.update(id, nodeSchema);
     }
+
+    @DeleteMapping(value = "/{nodeId}")
+    public void deleteNode(@PathVariable(value = "nodeId") Long id) {
+        this.treeNodeService.delete(id);
+    }
 }

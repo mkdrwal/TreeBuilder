@@ -7,6 +7,7 @@ import dev.mateuszkowalczyk.treebuilder.repository.NodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -80,5 +81,9 @@ public class NodeService {
                 throw new NodeException(String.format("Cannot find parent with id: %d", nodeSchema.getParentId()));
             }
         }
+    }
+
+    public void delete(Long id) {
+        this.nodeRepository.deleteById(id);
     }
 }

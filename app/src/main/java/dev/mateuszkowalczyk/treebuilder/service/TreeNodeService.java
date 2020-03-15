@@ -26,4 +26,8 @@ public class TreeNodeService {
     public void update(Long id, TreeNodeSchema nodeSchema) throws NodeException {
         this.nodeService.update(id, nodeSchema);
     }
+
+    public void delete(Long id) {
+        this.nodeService.delete(id);
+    }
 }
