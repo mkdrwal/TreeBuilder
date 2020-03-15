@@ -1,5 +1,5 @@
 <div class="node-container">
-    <input (click)="setValue($event)" (keyup)="setValue($event)" type="number">
+    <input [(ngModel)]="node.value" [formControl]="valueInput" type="number">
 
     <div (click)="createChild()" *ngIf="node.id" class="button add">
         <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
