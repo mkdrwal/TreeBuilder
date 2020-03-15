@@ -1,5 +1,11 @@
 <div class="node-container">
-    <input [(ngModel)]="node.value" [formControl]="valueInput" type="number">
+    <div class="number">
+        <input *ngIf="!leafValue; else displayLeafValue" [(ngModel)]="node.value" [formControl]="valueInput"
+               type="number">
+        <ng-template #displayLeafValue>
+            <div class="leaf">{{ leafValue }}</div>
+        </ng-template>
+    </div>
 
     <div (click)="createChild()" *ngIf="node.id" class="button add">
         <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -7,13 +13,19 @@
             <path d="M0 0h24v24H0z" fill="none"/>
         </svg>
     </div>
-    <div (click)="delete()" *ngIf="!!parent" class="button remove">
+    <div (click)="delete()" *ngIf="!!node.parentNode" class="button remove">
         <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 13H5v-2h14v2z"/>
             <path d="M0 0h24v24H0z" fill="none"/>
         </svg>
     </div>
+    <div (click)="expand()" [ngClass]="{'button': true, 'expanded': expanded}" class="button remove">
+        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+        </svg>
+    </div>
 </div>
-<div class="children-container">
-    <app-tree-node *ngFor="let childrenNode of node.children" [node]="childrenNode" [parent]="node"></app-tree-node>
+<div *ngIf="expanded" class="children-container">
+    <app-tree-node *ngFor="let childrenNode of node.children" [node]="childrenNode"></app-tree-node>
 </div>
