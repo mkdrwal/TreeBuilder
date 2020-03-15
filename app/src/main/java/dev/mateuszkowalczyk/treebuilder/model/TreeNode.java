@@ -8,7 +8,7 @@ import java.util.List;
 public class TreeNode {
     private Long id;
     private int value;
-    private TreeNode parent;
+    private Long parent;
     private List<TreeNode> children = new ArrayList<>();
 
     public TreeNode() {
@@ -20,7 +20,7 @@ public class TreeNode {
         this.value = value;
     }
 
-    public TreeNode(Long id, int value, TreeNode parent) {
+    public TreeNode(Long id, int value, Long parent) {
         this.value = value;
         this.parent = parent;
     }
@@ -46,11 +46,11 @@ public class TreeNode {
         this.value = value;
     }
 
-    public TreeNode getParent() {
+    public Long getParent() {
         return parent;
     }
 
-    public void setParent(TreeNode parent) {
+    public void setParent(Long parent) {
         this.parent = parent;
     }
 
@@ -63,7 +63,7 @@ public class TreeNode {
     }
 
     public void addChildren(TreeNode node) {
-        node.setParent(this);
+        node.setParent(this.id);
         this.children.add(node);
     }
 }
