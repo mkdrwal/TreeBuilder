@@ -24,6 +24,9 @@ public class Node {
     @Column
     private int value;
 
+    public Node() {
+    }
+
     public Long getId() {
         return id;
     }
